@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Evercookie::VERSION
   s.authors     = ["Vadim Senderovich"]
   s.email       = ["daddyzgm@gmail.com"]
-  s.homepage    = "http://github.com"
-  s.summary     = "Summary of Evercookie."
-  s.description = "Description of Evercookie."
+  s.homepage    = "https://github.com/daddyz/evercookie"
+  s.summary     = "Gem for placing and getting evercookie for rails application"
+  s.description = "Gem for placing and getting evercookie for rails application"
 
   s.files = Dir["{app,config,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
