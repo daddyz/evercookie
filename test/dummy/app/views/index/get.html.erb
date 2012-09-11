@@ -1,11 +1,4 @@
+<%= check_evercookie(params[:ec_name]) %>
 
-<b>Cookie found:</b> <i><%= params[:ec_name] %>></i> = <span id='idtag'>currently not set</span>
-
-<div id='cookies'></div>
-Now, try deleting this "uid" cookie anywhere possible, then
-<input type=button value="Click to rediscover cookies" onClick="document.getElementById('idtag').innerHTML = '*checking*'; document.getElementById('cookies').innerHTML = ''; setTimeout(getC, 300);">
-or
-<input type=button value="Click to rediscover cookies WITHOUT reactivating deleted cookies" onClick="document.getElementById('idtag').innerHTML = '*checking*'; document.getElementById('cookies').innerHTML = ''; setTimeout(getC, 300, 1);">
-
-</PRE>
-<%= get_evercookie(params[:ec_name]) %>
+<%= link_to 'Go to next step and to see value from controller', index_get_controller_path(ec_name: params[:ec_name]) %>
+<%= link_to 'Go to next step and to see if defined in controller', index_get_defined_path(ec_name: params[:ec_name]) %>

@@ -1,17 +1,2 @@
 var ec = new <%= Evercookie.js_class %>();
-
-val = undefined;
-
-getC(1);
-//setTimeout(getC, 500, 1);
-
-function getC(dont)
-{
-        ec.get("<%= @data[:key] -%>", function(best, all) {
-            document.getElementById('idtag').innerHTML = best;
-            var txt = document.getElementById('cookies');
-            for (var item in all)
-                txt.innerHTML += item + ' mechanism: ' + (val == all[item] ? '<b>' + all[item] + '</b>' : all[item]) + '<br>';
-        }, dont);
-}
-
+ec.get("<%= @data[:key] -%>");

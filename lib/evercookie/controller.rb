@@ -1,10 +1,17 @@
 module Evercookie #:nodoc
   module ControllerHelpers #:nodoc
 
-    def evercookie_defined?(key, value)
-      return true if Rails.env.test?
+    def evercookie_get_value(key)
+      session[Evercookie.hash_name_for_saved][key]
+    end
 
-
+    def evercookie_is_set?(key, value = nil)
+      if value.nil?
+        session[Evercookie.hash_name_for_saved][key].present?
+      else
+        session[Evercookie.hash_name_for_saved][key].present? \
+          && session[Evercookie.hash_name_for_saved][key] == value
+      end
     end
   end
 
@@ -16,6 +23,20 @@ module Evercookie #:nodoc
 
     def get
       @data = session[Evercookie.hash_name_for_get] || {key: '', value: ''}
+    end
+
+    def save
+      if session[Evercookie.hash_name_for_get].present?
+        data = session[Evercookie.hash_name_for_get]
+        if data[:key].present? && cookies[data[:key]].present?
+          session[Evercookie.hash_name_for_saved] = {} unless
+              session[Evercookie.hash_name_for_saved].present?
+
+          session[Evercookie.hash_name_for_saved][data[:key]] =
+              cookies[data[:key]]
+        end
+      end
+      render nothing: true
     end
 
     def ec_png

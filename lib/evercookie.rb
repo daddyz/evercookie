@@ -37,8 +37,16 @@ module Evercookie
     "#{@@hash_name}_get".to_sym
   end
 
+  def self.hash_name_for_saved
+    "#{@@hash_name}_saved".to_sym
+  end
+
   def self.get_cookie_path
     "/#{get_namespace}/"
+  end
+
+  def self.get_save_path
+    "/#{get_namespace}/save"
   end
 
   def self.get_cache_path

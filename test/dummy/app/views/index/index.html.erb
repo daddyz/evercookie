@@ -12,6 +12,17 @@
   </tr>
   <tr>
     <td>
+      <h4>Get Evercookie detailed</h4>
+    </td>
+    <td>
+      <%= form_tag(index_get_detailed_path, method: :get) do -%>
+          <%= text_field_tag :ec_name %>
+          <%= submit_tag 'Get Cookie Data' %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
       <h4>Set Evercookie by name</h4>
     </td>
     <td>
