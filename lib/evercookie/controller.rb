@@ -1,10 +1,24 @@
-module Evercookie #:nodoc
-  module ControllerHelpers #:nodoc
+module Evercookie
+  module ControllerHelpers
+    # define of controller helpers
 
+    # Get value of evercookie by key
+    # == Examples:
+    #   evercookie_get_value(:key)
+    #
     def evercookie_get_value(key)
-      session[Evercookie.hash_name_for_saved][key]
+      if session[Evercookie.hash_name_for_saved].present?
+        session[Evercookie.hash_name_for_saved][key]
+      else
+        nil
+      end
     end
 
+    # Checks whether the evercookie with specific key was defined
+    # == Examples:
+    #   evercookie_is_set?(:key)
+    #   evercookie_is_set?(:key, :value)
+    #
     def evercookie_is_set?(key, value = nil)
       if value.nil?
         session[Evercookie.hash_name_for_saved][key].present?
@@ -16,15 +30,19 @@ module Evercookie #:nodoc
   end
 
   class EvercookieController < ::ApplicationController
+    # Controller for evercookie gem
 
+    # Renders javascript with evercookie set script
     def set
       @data = session[Evercookie.hash_name_for_set] || {key: '', value: ''}
     end
 
+    # Renders javascript with evercookie get script
     def get
       @data = session[Evercookie.hash_name_for_get] || {key: '', value: ''}
     end
 
+    # Saves current evercookie value to session
     def save
       if session[Evercookie.hash_name_for_get].present?
         data = session[Evercookie.hash_name_for_get]
@@ -39,6 +57,7 @@ module Evercookie #:nodoc
       render nothing: true
     end
 
+    # Renders png image with encoded evercookie value in it
     def ec_png
       if not cookies[Evercookie.cookie_png].present?
         render :nothing => true, :status => 304
@@ -74,6 +93,7 @@ module Evercookie #:nodoc
       render text: img_blob, status: 200, content_type: 'image/png'
     end
 
+    # Renders page with etag header for evercookie js script
     def ec_etag
       if not cookies[Evercookie.cookie_etag].present?
         render :text => request.headers['If-None-Match'] || '', :status => 304
@@ -84,6 +104,7 @@ module Evercookie #:nodoc
       render text: cookies[Evercookie.cookie_etag]
     end
 
+    # Renders page with cache header for evercookie js script
     def ec_cache
       if not cookies[Evercookie.cookie_cache].present?
         render :nothing => true, :status => 304

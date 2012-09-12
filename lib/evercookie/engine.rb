@@ -2,7 +2,7 @@ module Evercookie
   module Rails
     class Engine < ::Rails::Engine
       initializer "evercookie precompile hook" do |app|
-        app.config.assets.precompile += %w(evercookie.js)
+        app.config.assets.precompile += %w(ec.js)
       end
 
       config.after_initialize do
