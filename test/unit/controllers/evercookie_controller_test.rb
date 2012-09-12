@@ -41,6 +41,7 @@ class EvercookieControllerTest < ActionController::TestCase
     assert_response :success
 
     assert_equal assigns[:data], {'key' => 'testkey', 'value' => 'testvalue'}
+
     assert @response.body.include? "var ec = new evercookie()"
     assert @response.body.include? "ec.set('testkey', 'testvalue')"
   end

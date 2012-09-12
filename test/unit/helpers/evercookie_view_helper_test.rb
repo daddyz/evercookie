@@ -17,4 +17,12 @@ class EvercookieViewHelperTest < ActionView::TestCase
     assert result.include? "assets/ec.js"
     assert result.include? "evercookie/set.js"
   end
+
+  test 'that check_evercookie helper returns result' do
+    result = check_evercookie(:testkey)
+    assert_not_nil result
+    assert_select 'script', 2
+    assert result.include? "assets/ec.js"
+    assert result.include? "evercookie/get.js"
+  end
 end
