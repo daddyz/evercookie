@@ -1,6 +1,6 @@
 module Evercookie
+  # module defines view helpers
   module ViewHelper
-    # Defining view helpers
 
     # Generates javascript for setting evercookie
     # == Example:

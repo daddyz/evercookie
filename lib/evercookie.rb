@@ -1,7 +1,8 @@
+# main module for evercookie gem
 module Evercookie
   # autoload additional classes used by gem
-  autoload :ViewHelper,        'evercookie/view'
-  autoload :ControllerHelpers, 'evercookie/controller'
+  autoload :ViewHelper,           'evercookie/view'
+  autoload :ControllerHelpers,    'evercookie/controller'
   autoload :EvercookieController, 'evercookie/controller'
 
   # path for controller
@@ -80,4 +81,5 @@ module Evercookie
   end
 end
 
+# extend Rails engine if it's in Rails application
 require 'evercookie/engine' if defined?(Rails)

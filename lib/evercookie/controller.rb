@@ -1,6 +1,6 @@
 module Evercookie
+  # defines controller helpers
   module ControllerHelpers
-    # define of controller helpers
 
     # Get value of evercookie by key
     # == Examples:
@@ -29,8 +29,8 @@ module Evercookie
     end
   end
 
+  # controller class defines evercookie actions
   class EvercookieController < ::ApplicationController
-    # Controller for evercookie gem
 
     # Renders javascript with evercookie set script
     def set

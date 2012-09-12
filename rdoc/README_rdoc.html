@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>README - Evercookie</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body class="file">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Evercookie.html">Evercookie</a>
+  
+    <li><a href="./Evercookie/ControllerHelpers.html">Evercookie::ControllerHelpers</a>
+  
+    <li><a href="./Evercookie/EvercookieController.html">Evercookie::EvercookieController</a>
+  
+    <li><a href="./Evercookie/Rails.html">Evercookie::Rails</a>
+  
+    <li><a href="./Evercookie/Rails/Engine.html">Evercookie::Rails::Engine</a>
+  
+    <li><a href="./Evercookie/ViewHelper.html">Evercookie::ViewHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation" class="description">
+  
+<p>## <a href="Evercookie.html">Evercookie</a></p>
+
+<p><a href="Evercookie.html">Evercookie</a> is a gem allowing you to use very
+persistent cookies on your rails project to track existing users on your
+system. It's javascript is based on <a
+href="https://github.com/samyk/evercookie">github.com/samyk/evercookie</a>
+javascript. Please note, that evercookie can't be fully reliable for
+detecting previous visiting of your site/application. For people who know
+the job it's simple enough to override it.</p>
+
+<p>As written on original javascript site (<a
+href="http://samy.pl/evercookie/">samy.pl/evercookie/</a>), when creating a
+new cookie, it uses the following storage mechanisms when available:</p>
+<ul><li>
+<p>Standard [HTTP Cookies](<a
+href="http://en.wikipedia.org/wiki/HTTP_cookie">en.wikipedia.org/wiki/HTTP_cookie</a>)</p>
+</li><li>
+<p>[Local Shared Objects](<a
+href="http://en.wikipedia.org/wiki/Local_Shared_Object">en.wikipedia.org/wiki/Local_Shared_Object</a>)
+(Flash Cookies)</p>
+</li><li>
+<p>[Isolated Storage](<a
+href="http://www.silverlight.net/learn/quickstarts/isolatedstorage/">www.silverlight.net/learn/quickstarts/isolatedstorage/</a>)
+Silverlight (removed in gem)</p>
+</li><li>
+<p>Storing cookies in RGB values of auto-generated, force-cached PNGs using
+HTML5 Canvas tag to read pixels (cookies) back out</p>
+</li><li>
+<p>Storing cookies in and reading out [Web History](<a
+href="http://samy.pl/csshack/">samy.pl/csshack/</a>) (removed in gem)</p>
+</li><li>
+<p>Storing cookies in HTTP [ETags](<a
+href="http://en.wikipedia.org/wiki/HTTP_ETag">en.wikipedia.org/wiki/HTTP_ETag</a>)</p>
+</li><li>
+<p>Storing cookies in [Web cache](<a
+href="http://en.wikipedia.org/wiki/Web_cache">en.wikipedia.org/wiki/Web_cache</a>)</p>
+</li><li>
+<p>[window.name](<a
+href="http://en.wikipedia.org/wiki/HTTP_cookie#window.name">en.wikipedia.org/wiki/HTTP_cookie#window.name</a>)
+caching</p>
+</li><li>
+<p>Internet Explorer [userData](<a
+href="http://msdn.microsoft.com/en-us/library/ms531424(VS.85).aspx">msdn.microsoft.com/en-us/library/ms531424(VS.85).aspx</a>)
+storage</p>
+</li><li>
+<p>HTML5 [Session Storage](<a
+href="http://dev.w3.org/html5/webstorage/#the-sessionstorage-attribute">dev.w3.org/html5/webstorage/#the-sessionstorage-attribute</a>)</p>
+</li><li>
+<p>HTML5 [Local Storage](<a
+href="http://dev.w3.org/html5/webstorage/#dom-localstorage">dev.w3.org/html5/webstorage/#dom-localstorage</a>)</p>
+</li><li>
+<p>HTML5 [Global Storage](<a
+href="https://developer.mozilla.org/en/dom/storage#globalStorage">developer.mozilla.org/en/dom/storage#globalStorage</a>)</p>
+</li><li>
+<p>HTML5 [Database Storage](<a
+href="http://dev.w3.org/html5/webdatabase">dev.w3.org/html5/webdatabase</a>)
+via SQLite</p>
+</li></ul>
+
+<p>## Information</p>
+
+<p>### Bug reports</p>
+
+<p>If you discover a problem with <a href="Evercookie.html">Evercookie</a>
+gem, let us know about it. <a
+href="https://github.com/daddyz/evercookie/issues">github.com/daddyz/evercookie/issues</a></p>
+
+<p>### Example application</p>
+
+<p>You can see an example of evercookie working in test/dummy application of
+this gem</p>
+
+<p>## Getting started</p>
+
+<p><a href="Evercookie.html">Evercookie</a> works was written and tested on
+Rails 3.2. You can add in to your Gemfile with:</p>
+
+<p>“`ruby gem ‘evercookie’ “`</p>
+
+<p>Run the bundle command to install it.</p>
+
+<p>### View helpers</p>
+
+<p>View helper that adds javascript for setting the evercookie for client:</p>
+
+<p>“`ruby set_evercookie(:key, :value) “`</p>
+
+<p>View helper that checks whether the cookie was set on client side and
+resets if some of cookies were deleted:</p>
+
+<p>“`ruby check_evercookie(:key) “`</p>
+
+<p>### Controller helpers</p>
+
+<p>Controller helper that gets the value of evercookie by key:</p>
+
+<p>“`ruby evercookie_get_value(:key) “`</p>
+
+<p>Controller helper that checks if specific evercookie was set:</p>
+
+<p>“`ruby evercookie_is_set?(:key) evercookie_is_set?(:key, :value) “`</p>
+
+<p>### How it works</p>
+
+<p>When you are calling:</p>
+<ul><li>
+<p>`set_evercookie` helper it adds javascript to set evercookie values in all
+available storage mechanisms.</p>
+</li><li>
+<p>`check_evercookie` helper it adds javascript to get evercookie values from
+all storage mechanisms where it possible and resets their values where it
+was removed (like if user removed individual cookies it sets them back) and
+after that it calls it’s controller action to save evercookie value in
+rails session</p>
+</li><li>
+<p>`evercookie_get_value` helper in controller it checks evercookie’s session
+for provided ‘key’ value and returns it if exists</p>
+</li><li>
+<p>`evercookie_is_set?` helper in controller it checks if there is a provided
+‘key’ in evercookie’s session</p>
+</li></ul>
+
+<p>### How this gem should be used</p>
+
+<p>The main idea of this gem is to set somewhere in application an evercookie
+to track that this client already visited your application. I used it to
+track multiple registrations in such scenario:</p>
+<ul><li>
+<p>After user was registered he was passed to specific view where I called
+set_evercookie helper:</p>
+</li></ul>
+
+<p>“`ruby set_evercookie(:uid, user_unique_id) “`</p>
+<ul><li>
+<p>In user sign up page view I called check_evercookie helper:</p>
+</li></ul>
+
+<p>“`ruby check_evercookie(:uid) “`</p>
+<ul><li>
+<p>In controller that was handling new user creation process I was running
+evercookie_get_value helper to check if previously I got evercookie value
+from user, and if I got it I was showing an error:</p>
+</li></ul>
+
+<p>“`ruby evercookie_get_value(:uid) “`</p>
+
+<p>### Configuring the gem</p>
+
+<p>You can create the initializer for evercookie gem in your Rails application
+initializers folder:</p>
+
+<p>“`ruby <a href="Evercookie.html#method-c-setup">Evercookie.setup</a> do
+|config|</p>
+
+<pre class="ruby"><span class="ruby-comment"># path for evercookie controller</span>
+<span class="ruby-identifier">config</span>.<span class="ruby-identifier">namespace</span> = :<span class="ruby-identifier">evercookie</span>
+
+<span class="ruby-comment"># name of javascript class to be used for evercookie</span>
+<span class="ruby-identifier">config</span>.<span class="ruby-identifier">js_class</span> = :<span class="ruby-identifier">evercookie</span>
+
+<span class="ruby-comment"># hash name base for session storage variables</span>
+<span class="ruby-identifier">config</span>.<span class="ruby-identifier">hash_name</span> = :<span class="ruby-identifier">evercookie</span>
+
+<span class="ruby-comment"># cookie name for cache storage</span>
+<span class="ruby-identifier">config</span>.<span class="ruby-identifier">cookie_cache</span> = :<span class="ruby-identifier">evercookie_cache</span>
+
+<span class="ruby-comment"># cookie name for png storage</span>
+<span class="ruby-identifier">config</span>.<span class="ruby-identifier">cookie_png</span> = :<span class="ruby-identifier">evercookie_png</span>
+
+<span class="ruby-comment"># cookie name for etag storage</span>
+<span class="ruby-identifier">config</span>.<span class="ruby-identifier">cookie_etag</span> = :<span class="ruby-identifier">evercookie_etag</span>
+</pre>
+
+<p>end “`</p>
+
+</div>
+
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
