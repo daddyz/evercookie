@@ -147,7 +147,7 @@ var <%= Evercookie.js_class %> = (function (window) {
                     }
 
                     // reset cookie everywhere
-                    if (dont_reset === undefined || dont_reset !== 1) {
+                    if ((dont_reset === undefined || dont_reset !== 1) && candidate !== undefined) {
                         self.set(name, candidate);
                     }
                     if (typeof cb === "function") {
