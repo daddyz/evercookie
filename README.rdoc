@@ -21,6 +21,11 @@ As written on original javascript site (http://samy.pl/evercookie/), when creati
 
 ## Information
 
+### RDoc
+
+RDoc documentation can be found here
+http://rubydoc.info/github/daddyz/evercookie/master/frames
+
 ### Bug reports
 
 If you discover a problem with Evercookie gem, let us know about it.
