@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    evercookie (0.0.2)
+    evercookie (0.0.3)
       chunky_png
       rails (>= 3.1)
 
