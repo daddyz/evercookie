@@ -1,5 +1,7 @@
 ## Evercookie
 
+[![Build Status](https://secure.travis-ci.org/daddyz/evercookie.png)](http://travis-ci.org/daddyz/evercookie)
+
 Evercookie is a gem allowing you to use very persistent cookies on your rails project to track existing users on your system.
 It's javascript is based on https://github.com/samyk/evercookie javascript.
 Please note, that evercookie can't be fully reliable for detecting previous visiting of your site/application. For people who know the job it's simple enough to override it.
