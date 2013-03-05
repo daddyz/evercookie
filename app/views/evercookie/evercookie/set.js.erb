@@ -1,2 +1,12 @@
-var ec = new <%= Evercookie.js_class %>();
-ec.set('<%= @data[:key] -%>', '<%= @data[:value] -%>')
+(function(){
+	function setCookie(){
+		var ec = new <%= Evercookie.js_class %>();
+		ec.set('<%= @data[:key] -%>', '<%= @data[:value] -%>')	
+	};
+	if(typeof jQuery != 'undefined') {
+		jQuery(document).ready(setCookie);
+	}
+	else {
+		setCookie();
+	};
+})();
