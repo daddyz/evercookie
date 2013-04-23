@@ -14,6 +14,10 @@ module Evercookie
       end
     end
 
+    def set_evercookie(key, value)
+      session[Evercookie.hash_name_for_set] = {key: key, value: value}
+    end
+
     # Checks whether the evercookie with specific key was defined
     # == Examples:
     #   evercookie_is_set?(:key)
