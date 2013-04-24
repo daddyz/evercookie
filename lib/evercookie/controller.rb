@@ -15,6 +15,8 @@ module Evercookie
     end
 
     def set_evercookie(key, value)
+      session[Evercookie.hash_name_for_saved] = {} unless
+        session[Evercookie.hash_name_for_saved].present?
       session[Evercookie.hash_name_for_saved][key] = value
     end
 
