@@ -8,7 +8,7 @@ rvm:
 gemfile:
   - gemfiles/Gemfile.rails-3.1.x
   - Gemfile
-  - Gemfile Gemfile.rails4
+  - Gemfile.rails4
 
 script:
   - bundle exec rake test
