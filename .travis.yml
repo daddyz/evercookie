@@ -15,3 +15,8 @@ script:
 
 before_script:
   - bundle install
+
+matrix:
+  exclude:
+    - rvm: 1.9.2
+      gemfile: Gemfile.rails4
