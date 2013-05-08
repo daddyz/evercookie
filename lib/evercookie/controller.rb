@@ -50,14 +50,10 @@ module Evercookie
 
     # Saves current evercookie value to session
     def save
-      if session[Evercookie.hash_name_for_get].present?
-        data = session[Evercookie.hash_name_for_get]
-        if data[:key].present? && cookies[data[:key]].present?
-          session[Evercookie.hash_name_for_saved] = {} unless
-              session[Evercookie.hash_name_for_saved].present?
-
-          session[Evercookie.hash_name_for_saved][data[:key]] =
-              cookies[data[:key]]
+      if data = session[Evercookie.hash_name_for_get]
+        if data[:key] && cookies[data[:key]]
+          session[Evercookie.hash_name_for_saved] =
+              { data[:key] => cookies[data[:key]] }
         end
       end
       render nothing: true
@@ -70,33 +66,12 @@ module Evercookie
         return true
       end
 
-      value = cookies[Evercookie.cookie_png]
-
-      require 'chunky_png'
-      image = ChunkyPNG::Image.new(200, 1, ChunkyPNG::Color::BLACK)
-
-      pixel = 0
-      while (index = pixel * 3) < value.length
-        red = value[index] ? value[index].ord : 0
-        green = value[index + 1] ? value[index + 1].ord : 0
-        blue = value[index + 2] ? value[index + 2].ord : 0
-
-        image[pixel, 0] = ChunkyPNG::Color.rgb(red, green, blue)
-
-        pixel += 1
-      end
-
       response.headers["Content-Type"] = "image/png"
       response.headers["Last-Modified"] = "Wed, 30 Jun 2010 21:36:48 GMT"
       response.headers["Expires"] = "Tue, 31 Dec 2030 23:30:45 GMT"
       response.headers["Cache-Control"] = "private, max-age=630720000"
 
-      img_blob = image.to_blob(
-          {color_mode: ChunkyPNG::COLOR_TRUECOLOR,
-           compression: Zlib::DEFAULT_COMPRESSION}
-      )
-
-      render text: img_blob, status: 200, content_type: 'image/png'
+      render text: get_blob_png, status: 200, content_type: 'image/png'
     end
 
     # Renders page with etag header for evercookie js script
@@ -123,6 +98,35 @@ module Evercookie
       response.headers["Cache-Control"] = "private, max-age=630720000"
 
       render text: cookies[Evercookie.cookie_cache]
+    end
+
+    private
+    def get_blob_png
+      value = cookies[Evercookie.cookie_png]
+
+      require 'chunky_png'
+      image = ChunkyPNG::Image.new(200, 1, ChunkyPNG::Color::BLACK)
+
+      pixel = 0
+      while (index = pixel * 3) < value.length
+        red = value[index] ? value[index].ord : 0
+        green = value[index + 1] ? value[index + 1].ord : 0
+        blue = value[index + 2] ? value[index + 2].ord : 0
+
+        image[pixel, 0] = ChunkyPNG::Color.rgb(red, green, blue)
+
+        pixel += 1
+      end
+
+      response.headers["Content-Type"] = "image/png"
+      response.headers["Last-Modified"] = "Wed, 30 Jun 2010 21:36:48 GMT"
+      response.headers["Expires"] = "Tue, 31 Dec 2030 23:30:45 GMT"
+      response.headers["Cache-Control"] = "private, max-age=630720000"
+
+      image.to_blob(
+          {color_mode: ChunkyPNG::COLOR_TRUECOLOR,
+          compression: Zlib::DEFAULT_COMPRESSION}
+      )
     end
   end
 end
