@@ -118,11 +118,6 @@ module Evercookie
         pixel += 1
       end
 
-      response.headers["Content-Type"] = "image/png"
-      response.headers["Last-Modified"] = "Wed, 30 Jun 2010 21:36:48 GMT"
-      response.headers["Expires"] = "Tue, 31 Dec 2030 23:30:45 GMT"
-      response.headers["Cache-Control"] = "private, max-age=630720000"
-
       image.to_blob(
           {color_mode: ChunkyPNG::COLOR_TRUECOLOR,
           compression: Zlib::DEFAULT_COMPRESSION}
