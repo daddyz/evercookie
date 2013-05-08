@@ -1,0 +1,5 @@
+<%= check_evercookie(params[:ec_name]) %>
+<br>
+<%= link_to 'Go to next step and to see value from controller', index_get_controller_path(ec_name: params[:ec_name]) %>
+<br>
+<%= link_to 'Go to next step and to see if defined in controller', index_get_defined_path(ec_name: params[:ec_name]) %>
