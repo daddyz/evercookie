@@ -14,6 +14,10 @@ module Evercookie
       end
     end
 
+    # Set evercookie value to session
+    # == Examples:
+    #   set_evercookie(:key, :value)
+    #
     def set_evercookie(key, value)
       session[Evercookie.hash_name_for_saved] = {} unless
         session[Evercookie.hash_name_for_saved].present?
