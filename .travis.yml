@@ -1,22 +1,19 @@
 language: ruby
 
 rvm:
-  - "1.9.2"
-  - "1.9.3"
-  - "2.0.0"
+  - 1.9.2
+  - 1.9.3
+  - 2.0.0
 
 gemfile:
   - gemfiles/Gemfile.rails-3.1.x
+  - gemfiles/Gemfile.rails-4.0.x
   - Gemfile
-#  - Gemfile.rails4
 
 script:
   - bundle exec rake test
 
-before_script:
-  - bundle install
-
 matrix:
   exclude:
     - rvm: 1.9.2
-      gemfile: Gemfile.rails4
+      gemfile: gemfiles/Gemfile.rails-4.0.x
