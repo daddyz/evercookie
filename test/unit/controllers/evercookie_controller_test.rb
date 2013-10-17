@@ -35,12 +35,12 @@ class EvercookieControllerTest < ActionController::TestCase
   test "should set view variables on evercookie set and have right js" do
     @controller = Evercookie::EvercookieController.new
 
-    session[Evercookie.hash_name_for_set] = {key: 'testkey', value: 'testvalue'}
+    session_data = {'key': 'testkey', value: 'testvalue'}
 
-    get :set, format: :js
+    get :set, { format: :js }, { Evercookie.hash_name_for_set => session_data }
     assert_response :success
 
-    assert_equal assigns[:data], {'key' => 'testkey', 'value' => 'testvalue'}
+    assert_equal session_data, assigns[:data]
 
     assert @response.body.include? "var ec = new evercookie()"
     assert @response.body.include? "ec.set('testkey', 'testvalue')"
@@ -49,12 +49,12 @@ class EvercookieControllerTest < ActionController::TestCase
   test "should set view variables on evercookie get and have right js" do
     @controller = Evercookie::EvercookieController.new
 
-    session[Evercookie.hash_name_for_get] = {key: 'testkey'}
+    session_data = {key: 'testkey'}
 
-    get :get, format: :js
+    get :get, { format: :js }, { Evercookie.hash_name_for_get => session_data }
     assert_response :success
 
-    assert_equal assigns[:data], {'key' => 'testkey'}
+    assert_equal session_data, assigns[:data]
 
     assert @response.body.include? "var ec = new evercookie()"
     assert @response.body.include? "ec.get('testkey')"
@@ -63,10 +63,9 @@ class EvercookieControllerTest < ActionController::TestCase
   test "should set session variables on evercookie save if cookie present" do
     @controller = Evercookie::EvercookieController.new
 
-    session[Evercookie.hash_name_for_get] = {key: 'testkey'}
     cookies[:testkey] = 'testvalue'
 
-    get :save
+    get :save, nil, { Evercookie.hash_name_for_get => {key: 'testkey'} }
     assert_response :success
 
     assert_equal session[Evercookie.hash_name_for_saved],
