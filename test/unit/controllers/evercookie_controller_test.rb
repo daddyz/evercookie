@@ -35,12 +35,14 @@ class EvercookieControllerTest < ActionController::TestCase
   test "should set view variables on evercookie set and have right js" do
     @controller = Evercookie::EvercookieController.new
 
-    session_data = {'key': 'testkey', value: 'testvalue'}
+    session_data = {key: 'testkey', value: 'testvalue'}
+    @request.session[Evercookie.hash_name_for_set] = session_data
 
-    get :set, { format: :js }, { Evercookie.hash_name_for_set => session_data }
+    get :set, format: :js
+
     assert_response :success
 
-    assert_equal session_data, assigns[:data]
+    assert_equal session_data, assigns(:data).symbolize_keys
 
     assert @response.body.include? "var ec = new evercookie()"
     assert @response.body.include? "ec.set('testkey', 'testvalue')"
@@ -50,11 +52,11 @@ class EvercookieControllerTest < ActionController::TestCase
     @controller = Evercookie::EvercookieController.new
 
     session_data = {key: 'testkey'}
-
-    get :get, { format: :js }, { Evercookie.hash_name_for_get => session_data }
+    @request.session[Evercookie.hash_name_for_get] = session_data
+    get :get, format: :js
     assert_response :success
 
-    assert_equal session_data, assigns[:data]
+    assert_equal session_data, assigns(:data).symbolize_keys
 
     assert @response.body.include? "var ec = new evercookie()"
     assert @response.body.include? "ec.get('testkey')"
@@ -64,18 +66,17 @@ class EvercookieControllerTest < ActionController::TestCase
     @controller = Evercookie::EvercookieController.new
 
     cookies[:testkey] = 'testvalue'
-
-    get :save, nil, { Evercookie.hash_name_for_get => {key: 'testkey'} }
+    @request.session[Evercookie.hash_name_for_get] = {key: 'testkey'}
+    get :save
     assert_response :success
 
-    assert_equal session[Evercookie.hash_name_for_saved],
-                 {'testkey' => 'testvalue'}
+    assert_equal 'testvalue', session[Evercookie.hash_name_for_saved]['testkey']
   end
 
   test "should not set session variables on save if cookie not present" do
     @controller = Evercookie::EvercookieController.new
 
-    session[Evercookie.hash_name_for_get] = {key: 'testkey'}
+    @request.session[Evercookie.hash_name_for_get] = {key: 'testkey'}
 
     get :save
     assert_response :success
