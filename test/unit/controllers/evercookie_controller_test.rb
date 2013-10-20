@@ -65,7 +65,7 @@ class EvercookieControllerTest < ActionController::TestCase
   test "should set session variables on evercookie save if cookie present" do
     @controller = Evercookie::EvercookieController.new
 
-    cookies[:testkey] = 'testvalue'
+    @request.cookies[:testkey] = 'testvalue'
     @request.session[Evercookie.hash_name_for_get] = {key: 'testkey'}
     get :save
     assert_response :success
