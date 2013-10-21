@@ -111,21 +111,22 @@ module Evercookie
       require 'chunky_png'
       image = ChunkyPNG::Image.new(200, 1, ChunkyPNG::Color::BLACK)
 
-      pixel = 0
-      while (index = pixel * 3) < value.length
-        red = value[index] ? value[index].ord : 0
-        green = value[index + 1] ? value[index + 1].ord : 0
-        blue = value[index + 2] ? value[index + 2].ord : 0
-
-        image[pixel, 0] = ChunkyPNG::Color.rgb(red, green, blue)
-
-        pixel += 1
+      (0..value.length).step(3) do |index|
+        image[(index / 3).round, 0] = get_pixel_by_index(value, index)
       end
 
       image.to_blob(
           {color_mode: ChunkyPNG::COLOR_TRUECOLOR,
           compression: Zlib::DEFAULT_COMPRESSION}
       )
+    end
+
+    def get_pixel_by_index(value, index)
+      red = value[index] ? value[index].ord : 0
+      green = value[index + 1] ? value[index + 1].ord : 0
+      blue = value[index + 2] ? value[index + 2].ord : 0
+
+      ChunkyPNG::Color.rgb(red, green, blue)
     end
   end
 end
