@@ -30,7 +30,9 @@ module Evercookie
     #   evercookie_is_set?(:key, :value)
     #
     def evercookie_is_set?(key, value = nil)
-      if value.nil?
+      if session[Evercookie.hash_name_for_saved].blank?
+        false
+      elsif value.nil?
         session[Evercookie.hash_name_for_saved][key].present?
       else
         session[Evercookie.hash_name_for_saved][key].present? \
