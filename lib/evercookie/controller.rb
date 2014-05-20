@@ -42,7 +42,7 @@ module Evercookie
   end
 
   # controller class defines evercookie actions
-  class EvercookieController < ::ApplicationController
+  class EvercookieController < ::ActionController::Base
 
     # Renders javascript with evercookie set script
     def set
