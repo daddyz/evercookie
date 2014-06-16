@@ -79,6 +79,11 @@ module Evercookie
   def self.get_png_path
     "/#{get_namespace}/ec_png"
   end
+
+  # getter for path of etag action
+  def self.get_auth_path
+    "/#{get_namespace}/ec_auth"
+  end
 end
 
 # extend Rails engine if it's in Rails application

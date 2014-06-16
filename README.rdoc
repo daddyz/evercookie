@@ -10,18 +10,21 @@ Please note, that evercookie can't be fully reliable for detecting previous visi
 
 As written on original javascript {site}[http://samy.pl/evercookie/], when creating a new cookie, it uses the following storage mechanisms when available:
 * Standard {HTTP Cookies}[http://en.wikipedia.org/wiki/HTTP_cookie]
-* {Local Shared Objects}[http://en.wikipedia.org/wiki/Local_Shared_Object] (Flash Cookies)
-* {Isolated Storage}[http://www.silverlight.net/learn/quickstarts/isolatedstorage/] Silverlight (removed in gem)
-* Storing cookies in RGB values of auto-generated, force-cached PNGs using HTML5 Canvas tag to read pixels (cookies) back out
-* Storing cookies in and reading out {Web History}[http://samy.pl/csshack/] (removed in gem)
+* Flash {Local Shared Objects}[http://en.wikipedia.org/wiki/Local_Shared_Object] (Flash Cookies)
+* Silverlight {Isolated Storage}[http://www.silverlight.net/learn/quickstarts/isolatedstorage/] (disabled in gem, due to possible issues with different browsers)
+* CSS {History Knocking}[http://samy.pl/csshack/] (turned off in gem due to network intensiveness)
 * Storing cookies in HTTP {ETags}[http://en.wikipedia.org/wiki/HTTP_ETag]
 * Storing cookies in {Web cache}[http://en.wikipedia.org/wiki/Web_cache]
 * {window.name}[http://en.wikipedia.org/wiki/HTTP_cookie=window.name] caching
-* Internet Explorer {userData}[http://msdn.microsoft.com/en-us/library/ms531424(VS.85).aspx] storage
+* Internet Explorer {userData storage}[http://msdn.microsoft.com/en-us/library/ms531424(VS.85).aspx]
+* HTML5 Canvas - Cookie values stored in RGB data of auto-generated, force-cached PNG images
 * HTML5 {Session Storage}[http://dev.w3.org/html5/webstorage/=the-sessionstorage-attribute]
 * HTML5 {Local Storage}[http://dev.w3.org/html5/webstorage/=dom-localstorage]
 * HTML5 {Global Storage}[https://developer.mozilla.org/en/dom/storage=globalStorage]
 * HTML5 {Database Storage}[http://dev.w3.org/html5/webdatabase] via SQLite
+* HTML5 {IndexedDB}[http://www.w3.org/TR/IndexedDB/]
+* Java {JNLP PersistenceService}[http://docs.oracle.com/javase/1.5.0/docs/guide/javaws/jnlp/index.html] (disabled in gem due to possible user permission request)
+* Java exploit {CVE-2013-0422}[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-0422] - Attempts to escape the applet sandbox and write cookie data directly to the user's hard drive. (disabled in gem due to possible user permission request)
 
 == Information
 
@@ -41,7 +44,7 @@ You can see an example of evercookie working in test/dummy application of this g
 
 == Getting started
 
-Evercookie works was written and tested on Rails 3.2. You can add in to your Gemfile with:
+Evercookie works was written and tested on Rails 3.2/4. You can add in to your Gemfile with:
 
   gem 'evercookie'
 
