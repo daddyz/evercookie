@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    evercookie (0.0.6)
+    evercookie (0.1.0)
       chunky_png
       rails (>= 3.1)
 
@@ -37,7 +37,7 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.3)
     builder (3.0.4)
-    chunky_png (1.2.8)
+    chunky_png (1.2.9)
     erubis (2.7.0)
     execjs (2.0.2)
     hike (1.2.3)
