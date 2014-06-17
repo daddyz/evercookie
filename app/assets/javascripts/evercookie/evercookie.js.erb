@@ -1003,9 +1003,9 @@ try{
      */
     this.hasVisited = function (url) {
       if (this.no_color === -1) {
-        var no_style = this._getRGB("http://samy-was-here-this-should-never-be-visited.com", -1);
+        var no_style = this._getRGB("http://never-visited.com", -1);
         if (no_style === -1) {
-          this.no_color = this._getRGB("http://samy-was-here-" + Math.floor(Math.random() * 9999999) + "rand.com");
+          this.no_color = this._getRGB("http://this-" + Math.floor(Math.random() * 9999999) + "rand.com");
         }
       }
 

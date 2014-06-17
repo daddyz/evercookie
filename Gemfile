@@ -6,4 +6,4 @@ source "http://rubygems.org"
 gemspec
 
 gem "rails", "3.2.14"
-gem "chunky_png"
+gem "uglifier"

@@ -118,3 +118,10 @@ You can create the initializer for evercookie gem in your Rails application init
     # cookie name for etag storage
     config.cookie_etag = :evercookie_etag
   end
+
+=== Hiding evercookie presence in your application
+
+If you really want to hide that you are using evercookie you should do several things (as I see it):
+* precompile assets with compression enabled, it will remove all comments and will change some variables of evercookie JS class
+* configure the gem to use paths that don't have 'evercookie' name in them
+* but remember, if someone wants to find presence of evercookie, he will
