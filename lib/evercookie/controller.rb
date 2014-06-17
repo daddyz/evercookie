@@ -44,6 +44,8 @@ module Evercookie
   # controller class defines evercookie actions
   class EvercookieController < ::ActionController::Base
 
+    before_filter :basic_auth, only: [ :ec_auth ]
+
     # Renders javascript with evercookie set script
     def set
       @data = session[Evercookie.hash_name_for_set] || {key: '', value: ''}
@@ -87,6 +89,8 @@ module Evercookie
         return true
       end
 
+      puts "cache value (#{Evercookie.cookie_etag}): #{cookies[Evercookie.cookie_etag]}"
+
       response.headers["Etag"] = cookies[Evercookie.cookie_etag]
       render text: cookies[Evercookie.cookie_etag]
     end
@@ -98,6 +102,8 @@ module Evercookie
         return true
       end
 
+      puts "cache value (#{Evercookie.cookie_cache}): #{cookies[Evercookie.cookie_cache]}"
+
       response.headers["Content-Type"] = "text/html"
       response.headers["Last-Modified"] = "Wed, 30 Jun 2010 21:36:48 GMT"
       response.headers["Expires"] = "Tue, 31 Dec 2030 23:30:45 GMT"
@@ -106,10 +112,22 @@ module Evercookie
       render text: cookies[Evercookie.cookie_cache]
     end
 
+    # Renders evercookie value for basic authentication if it was set
+    def ec_auth
+      render text: @username
+    end
+
     private
+    def basic_auth
+      authenticate_with_http_basic do |username, password|
+        @username = username
+        true
+      end
+    end
+
     def get_blob_png
       value = cookies[Evercookie.cookie_png]
-
+      puts "png value (#{Evercookie.cookie_png}): #{value}"
       require 'chunky_png'
       image = ChunkyPNG::Image.new(200, 1, ChunkyPNG::Color::BLACK)
 

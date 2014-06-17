@@ -5,5 +5,5 @@ source "http://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem "rails", ">= 3.1"
-gem "chunky_png"
+gem "rails", "3.2.14"
+gem "uglifier"
