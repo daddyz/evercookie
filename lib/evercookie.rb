@@ -29,6 +29,10 @@ module Evercookie
   mattr_accessor :hash_name
   @@hash_name = :evercookie
 
+  # enable/disable basic authentication cache
+  mattr_accessor :basic_auth
+  @@basic_auth = true
+
   # default method for setup evercookie
   def self.setup
     yield self
