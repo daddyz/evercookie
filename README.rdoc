@@ -117,6 +117,9 @@ You can create the initializer for evercookie gem in your Rails application init
 
     # cookie name for etag storage
     config.cookie_etag = :evercookie_etag
+
+    # enable/disable http basic auth (leads to problems if your app uses http basic auth)
+    config.basic_auth = true
   end
 
 === Hiding evercookie presence in your application
