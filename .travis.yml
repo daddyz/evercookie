@@ -9,6 +9,7 @@ rvm:
 gemfile:
   - gemfiles/Gemfile.rails-3.1.x
   - gemfiles/Gemfile.rails-4.0.x
+  - gemfiles/Gemfile.rails-4.1.x
   - Gemfile
 
 script:
@@ -18,3 +19,5 @@ matrix:
   exclude:
     - rvm: 1.9.2
       gemfile: gemfiles/Gemfile.rails-4.0.x
+    - rvm: 1.9.2
+      gemfile: gemfiles/Gemfile.rails-4.1.x
