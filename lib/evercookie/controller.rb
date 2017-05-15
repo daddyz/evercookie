@@ -43,7 +43,7 @@ module Evercookie
 
   # controller class defines evercookie actions
   class EvercookieController < ::ActionController::Base
-    if ::Rails::VERSION::TINY < 5
+    if ::Rails::VERSION::MAJOR < 5
       before_filter :basic_auth, only: [ :ec_auth ]
     else
       before_action :basic_auth, only: [ :ec_auth ]
