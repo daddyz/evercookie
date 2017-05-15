@@ -43,8 +43,11 @@ module Evercookie
 
   # controller class defines evercookie actions
   class EvercookieController < ::ActionController::Base
-
-    before_filter :basic_auth, only: [ :ec_auth ]
+    if Rails::VERSION::TINY < 5
+      before_filter :basic_auth, only: [ :ec_auth ]
+    else
+      before_action :basic_auth, only: [ :ec_auth ]
+    end
 
     # Renders javascript with evercookie set script
     def set
