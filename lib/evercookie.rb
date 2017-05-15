@@ -88,6 +88,16 @@ module Evercookie
   def self.get_auth_path
     "/#{get_namespace}/ec_auth"
   end
+
+  # @private
+  def self.rails5?
+    ::Rails::VERSION::MAJOR >= 5
+  end
+
+  # @private
+  def self.plain_key
+    Evercookie.rails5? ? :plain : :text
+  end
 end
 
 # extend Rails engine if it's in Rails application
