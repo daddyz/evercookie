@@ -44,6 +44,7 @@ module Evercookie
   # controller class defines evercookie actions
   class EvercookieController < ::ActionController::Base
     if Evercookie.rails5?
+      protect_from_forgery except: [:set, :get, :save, :ec_png, :ec_etag, :ec_auth]
       before_action :basic_auth, only: [ :ec_auth ]
     else
       before_filter :basic_auth, only: [ :ec_auth ]
